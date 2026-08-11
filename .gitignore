@@ -1,0 +1,233 @@
+# ==========================================
+# CAREERSYNC - GITIGNORE
+# ==========================================
+
+# ------------------------------------------
+# ENVIRONMENT VARIABLES & SECRETS
+# ------------------------------------------
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------
+# PRIVATE CREDENTIALS
+# ------------------------------------------
+LOGIN_CREDENTIALS.md
+
+# ------------------------------------------
+# NODE.JS DEPENDENCIES
+# ------------------------------------------
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# ------------------------------------------
+# BUILD OUTPUT
+# ------------------------------------------
+client/dist/
+server/dist/
+dist/
+
+# ------------------------------------------
+# LOG FILES
+# ------------------------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# ------------------------------------------
+# TEST / COVERAGE OUTPUT
+# ------------------------------------------
+coverage/
+
+# ------------------------------------------
+# TEMPORARY / CACHE FILES
+# ------------------------------------------
+*.tmp
+*.temp
+*.cache
+
+# ------------------------------------------
+# OPERATING SYSTEM FILES
+# ------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------
+# VS CODE
+# ------------------------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# ------------------------------------------
+# OTHER EDITOR FILES
+# ------------------------------------------
+*.swp
+*.swo
+
+# Uploaded user files
+server/uploads/
+
+# Dependencies
+node_modules/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Uploaded files
+server/uploads/
+
+# Credentials
+LOGIN_CREDENTIALS.md
+
+# Build files
+dist/
+build/
+
+# Logs
+*.log
+
+# Accidental zero-byte dependency artifacts
+server/.bin
+server/@google
+server/@protobufjs
+server/@types
+server/accepts
+server/agent-base
+server/append-field
+server/array-flatten
+server/aws-ssl-profiles
+server/base64-js
+server/bcryptjs
+server/bignumber.js
+server/body-parser
+server/buffer-equal-constant-time
+server/buffer-from
+server/busboy
+server/bytes
+server/call-bind-apply-helpers
+server/call-bound
+server/concat-stream
+server/content-disposition
+server/content-type
+server/cookie
+server/cookie-signature
+server/core-util-is
+server/cors
+server/data-uri-to-buffer
+server/debug
+server/denque
+server/depd
+server/destroy
+server/dir
+server/dotenv
+server/dunder-proto
+server/ecdsa-sig-formatter
+server/ee-first
+server/encodeurl
+server/es-define-property
+server/es-errors
+server/es-object-atoms
+server/escape-html
+server/etag
+server/express
+server/extend
+server/fetch-blob
+server/finalhandler
+server/formdata-polyfill
+server/forwarded
+server/fresh
+server/function-bind
+server/gaxios
+server/gcp-metadata
+server/generate-function
+server/get-intrinsic
+server/get-proto
+server/google-auth-library
+server/google-logging-utils
+server/gopd
+server/has-symbols
+server/hasown
+server/helmet
+server/http-errors
+server/https-proxy-agent
+server/iconv-lite
+server/inherits
+server/ipaddr.js
+server/is-property
+server/isarray
+server/json-bigint
+server/jsonwebtoken
+server/jwa
+server/jws
+server/lodash.includes
+server/lodash.isboolean
+server/lodash.isinteger
+server/lodash.isnumber
+server/lodash.isplainobject
+server/lodash.isstring
+server/lodash.once
+server/long
+server/lru.min
+server/math-intrinsics
+server/media-typer
+server/merge-descriptors
+server/methods
+server/mime
+server/mime-db
+server/mime-types
+server/minimist
+server/mkdirp
+server/ms
+server/multer
+server/mysql2
+server/named-placeholders
+server/negotiator
+server/node-domexception
+server/node-ensure
+server/node-fetch
+server/object-assign
+server/object-inspect
+server/on-finished
+server/p-retry
+server/parseurl
+server/path-to-regexp
+server/pdf-parse
+server/process-nextick-args
+server/protobufjs
+server/proxy-addr
+server/qs
+server/range-parser
+server/raw-body
+server/readable-stream
+server/retry
+server/safe-buffer
+server/safer-buffer
+server/semver
+server/send
+server/serve-static
+server/setprototypeof
+server/side-channel
+server/side-channel-list
+server/side-channel-map
+server/side-channel-weakmap
+server/sql-escaper
+server/statuses
+server/streamsearch
+server/string_decoder
+server/toidentifier
+server/type-is
+server/typedarray
+server/undici-types
+server/unpipe
+server/util-deprecate
+server/utils-merge
+server/vary
+server/web-streams-polyfill
+server/ws
+server/xtend
