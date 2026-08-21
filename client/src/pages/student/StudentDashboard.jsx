@@ -26,22 +26,59 @@ export const StudentDashboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+useEffect(() => {
+  if (user) {
     fetchDashboard();
-  }, []);
+  }
+}, [user]);
 
-  const fetchDashboard = async () => {
-    try {
-      const res = await api.get('/student/dashboard');
-      if (res.data.success) {
-        setData(res.data);
-      }
-    } catch (err) {
-      console.error('Error fetching dashboard metrics', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+const fetchDashboard = async () => {
+  try {
+    const [dashboardResult, applicationsResult, savedJobsResult] =
+      await Promise.allSettled([
+        api.get('/student/dashboard'),
+        api.get('/student/applied-jobs'),
+        api.get('/student/saved-jobs')
+      ]);
+
+    const dashboard =
+      dashboardResult.status === 'fulfilled' &&
+      dashboardResult.value.data?.success
+        ? dashboardResult.value.data
+        : {};
+
+    const applications =
+      applicationsResult.status === 'fulfilled' &&
+      applicationsResult.value.data?.success
+        ? applicationsResult.value.data.applications || []
+        : [];
+
+    const savedJobs =
+      savedJobsResult.status === 'fulfilled' &&
+      savedJobsResult.value.data?.success
+        ? savedJobsResult.value.data.savedJobs || []
+        : [];
+
+    setData({
+      ...dashboard,
+
+      metrics: {
+        ...(dashboard.metrics || {}),
+        totalApplications: applications.length,
+        savedJobs: savedJobs.length
+      },
+
+      latestApplications:
+        dashboard.latestApplications?.length > 0
+          ? dashboard.latestApplications
+          : applications.slice(0, 5)
+    });
+  } catch (err) {
+    console.error('Error fetching dashboard data:', err);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -65,7 +102,7 @@ export const StudentDashboard = () => {
           <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Welcome Back, {user?.name || 'Student'}! 👋
+                Welcome Back, {user?.name || 'Student'}!
               </h1>
               <p className="text-sm text-slate-500 mt-1">Here is your live placement preparation overview for today.</p>
             </div>
