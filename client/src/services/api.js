@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://careersync-3956.onrender.com';
+const API_BASE_URL = 'https://careersync-3956.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
