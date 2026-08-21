@@ -237,27 +237,47 @@ export const memoryStore = {
 };
 
 try {
+
   pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 3306,
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'careersync_db',
+
+    host: process.env.DB_HOST,
+
+    port: Number(process.env.DB_PORT) || 3306,
+
+    user: process.env.DB_USER,
+
+    password: process.env.DB_PASSWORD,
+
+    database: process.env.DB_NAME,
+
+    ssl: {
+      rejectUnauthorized: false
+    },
+
     waitForConnections: true,
+
     connectionLimit: 10,
+
     queueLimit: 0
+
   });
 
   // Test connection
   const conn = await pool.getConnection();
-  conn.release();
-  isConnected = true;
-  console.log('✅ Connected to MySQL Database Pool successfully.');
-} catch (err) {
-  console.warn('⚠️ MySQL connection unestablished. Operating with in-memory store mode for instant evaluation capability.');
-  isConnected = false;
-}
 
+  conn.release();
+
+  isConnected = true;
+
+  console.log('✅ Connected to MySQL Database Pool successfully.');
+
+} catch (err) {
+
+  console.error('❌ MySQL connection failed:', err.message);
+
+  isConnected = false;
+
+}
 export const query = async (sql, params = []) => {
   if (isConnected && pool) {
     try {
